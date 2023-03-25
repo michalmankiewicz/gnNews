@@ -11,6 +11,7 @@ type Country = {
   flags: {
     png: string;
   };
+  cca2: string;
 };
 
 function Aside() {
@@ -29,8 +30,13 @@ function Aside() {
         {isLoading && <Loader />}
         {isSuccess && (
           <ul className="ml-1 flex flex-col gap-3">
-            {data.slice(0, 10).map((c: Country) => (
-              <CountryItem key={c.name.common} name={c.name.common} imageUrl={c.flags.png} />
+            {data.slice(0, 15).map((c: Country) => (
+              <CountryItem
+                key={c.cca2}
+                name={c.name.common}
+                imageUrl={c.flags.png}
+                symbol={c.cca2}
+              />
             ))}
           </ul>
         )}

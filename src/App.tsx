@@ -11,7 +11,7 @@ function App() {
     <AppShell header={<Header />} aside={<Aside />} asideOffsetBreakpoint="sm">
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/country/:country" element={<Country />} />
+        <Route path="/country/:countryId" element={<Country />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AppShell>
