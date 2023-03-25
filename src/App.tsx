@@ -1,5 +1,20 @@
+import { AppShell } from '@mantine/core';
+import { Route, Routes } from 'react-router';
+import Header from './components/header/Header';
+import Country from './pages/Country';
+import MainPage from './pages/MainPage';
+import NotFound from './pages/NotFound';
+
 function App() {
-  return <h1 className="text-red-500">App initialized</h1>;
+  return (
+    <AppShell header={<Header />}>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/country" element={<Country />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AppShell>
+  );
 }
 
 export default App;
