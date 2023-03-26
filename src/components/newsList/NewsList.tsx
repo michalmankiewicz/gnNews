@@ -19,8 +19,8 @@ function NewsList({ articles = [], isSuccess, isLoading, isError }: Props) {
 
   return (
     <ul
-      className={`relative flex min-h- ${
-        viewType === 'list' ? 'flex-col gap-4' : 'flex-wrap justify-around'
+      className={`min-h- relative flex ${
+        viewType === 'list' ? 'flex-col gap-4' : 'flex-wrap justify-center gap-4'
       }  mx-4 my-2`}
     >
       {isLoading && <Loader size="xl" className="absolute top-60 left-1/2" />}
@@ -38,12 +38,12 @@ function NewsList({ articles = [], isSuccess, isLoading, isError }: Props) {
           />
         ))}
       {isSuccess && articles.length === 0 && (
-        <h3 className="text-primary absolute top-60 left-1/2 -translate-x-1/2">
+        <h3 className="absolute top-60 left-1/2 -translate-x-1/2 text-primary">
           There is no news for this country
         </h3>
       )}
       {isError && (
-        <h3 className="text-primary absolute top-60 left-1/2 -translate-x-1/2">
+        <h3 className="absolute top-60 left-1/2 -translate-x-1/2 text-primary">
           Something went wrong!
         </h3>
       )}

@@ -9,7 +9,12 @@ import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <AppShell header={<Header />} aside={<Aside />} footer={<Footer />} asideOffsetBreakpoint="sm">
+    <AppShell
+      header={<Header />}
+      aside={<Aside />}
+      footer={<Footer />}
+      className="overflow-x-hidden"
+    >
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/country/:countryId" element={<Country />} />

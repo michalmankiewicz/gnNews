@@ -17,7 +17,7 @@ function Footer() {
   }, []);
 
   return (
-    <div className="font-bold text-xl text-primary p-8 border-t-2 border-primary flex justify-between items-center">
+    <div className="flex items-center justify-between p-8 text-xl font-bold text-primary">
       <h4>Number of news: {numberOfNews ?? 0}</h4>
       <h4 className="">{date.toLocaleTimeString()}</h4>
     </div>

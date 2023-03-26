@@ -27,14 +27,14 @@ const Header = () => {
 
   return (
     <>
-      <header className="h-28 px-4 md:px-8 py-2 border-b-2 border-primary flex items-center  justify-between">
-        <h1 className="text-primary text-2xl md:text-4xl te">
+      <header className="flex h-28 items-center justify-between  px-4 py-2  font-semibold md:px-8">
+        <h1 className="te text-2xl text-primary md:text-4xl">
           <Link to="/">
-            gn<span className="text-gray-500">News</span>
+            gn<span className="text-gray-400">News</span>
           </Link>
         </h1>
         <div
-          className={`w-full py-4 bg-gray-500 items-center flex flex-col gap-4 justify-center absolute top-28 right-0  md:flex-row md:static md:bg-transparent md:w-auto ${
+          className={`absolute top-28 right-0 z-10 flex w-full flex-col items-center justify-center gap-4 bg-gray-500  py-4 md:static md:w-auto md:flex-row md:bg-transparent ${
             dropdownOpened ? '' : 'hidden md:flex'
           }`}
         >

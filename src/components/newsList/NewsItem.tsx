@@ -23,27 +23,31 @@ function NewsItem({ title, source, publishedAt, imageUrl, description, newsUrl }
     <>
       <li
         onClick={modalHandlers.open}
-        className={`text-black bg-primary border-4  border-primary rounded-xl flex ${
-          viewType === 'list' ? '' : 'flex-col max-w-sm mb-4'
-        }  justify-between cursor-pointer  `}
+        className={`flex rounded-xl border-4  border-primary bg-primary text-black transition-all hover:-translate-y-1    ${
+          viewType === 'list' ? '' : 'max-w-xs flex-col '
+        }  cursor-pointer gap-2   `}
       >
-        <div className={`rounded-xl overflow-hidden ${viewType === 'list' ? 'w-1/3' : 'w-full'}`}>
-          <img src={imageUrl ?? noImage} className="mx-auto" />
-        </div>
+        {/* TODO */}
+        <div
+          className={`h-40 overflow-hidden rounded-xl bg-cover    ${
+            viewType === 'list' ? 'hidden  w-1/4 md:block' : 'h-52 w-full'
+          }  `}
+          style={{ backgroundImage: `url(${imageUrl ?? noImage})` }}
+        ></div>
 
         <div
           className={` ${
-            viewType === 'list' ? 'w-2/3' : 'w-full'
-          }  p-4  flex flex-col justify-between`}
+            viewType === 'list' ? 'md:w-3/4' : 'w-full '
+          }  flex  flex-col justify-between  p-4`}
         >
           <div>
-            <h2 className=" text-2xl font-semibold mb-1 ">{title}</h2>
+            <h2 className=" mb-2 text-2xl font-semibold ">{title}</h2>
             <Badge variant="outline" color="dark" size="xl" className="">
               {source}
             </Badge>
           </div>
-          <p>{publishedAt}</p>
         </div>
+        <p className="self-end">{publishedAt}</p>
       </li>
 
       <Modal
