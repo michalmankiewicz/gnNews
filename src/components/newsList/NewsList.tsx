@@ -13,7 +13,7 @@ type Props = {
 };
 
 function NewsList({ articles = [], isSuccess, isLoading, isError }: Props) {
-  const viewType = useAppSelector((state) => state.options.options);
+  const viewType = useAppSelector((state) => state.view.viewType);
 
   console.log(articles);
 

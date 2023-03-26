@@ -15,7 +15,7 @@ type Props = {
 };
 
 function NewsItem({ title, source, publishedAt, imageUrl, description, newsUrl }: Props) {
-  const viewType = useAppSelector((state) => state.options.options);
+  const viewType = useAppSelector((state) => state.view.viewType);
 
   const [modalOpened, modalHandlers] = useDisclosure(false);
 

@@ -17,11 +17,11 @@ import {
 import { Link } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
 import { useAppDispatch, useAppSelector } from '../../types/redux';
-import { toggleOption } from '../../store/options/optionsSlice';
+import { toggleViewType } from '../../store/options/viewSlice';
 
 const Header = () => {
   const dispatch = useAppDispatch();
-  const optionValue = useAppSelector((state) => state.options.options);
+  const optionValue = useAppSelector((state) => state.view.viewType);
   const [modalOpened, modalHandlers] = useDisclosure(false);
   const [dropdownOpened, dropdownHandlers] = useDisclosure(false);
 
@@ -42,7 +42,7 @@ const Header = () => {
             color="primary"
             size="lg"
             value={optionValue}
-            onChange={() => dispatch(toggleOption())}
+            onChange={() => dispatch(toggleViewType())}
             data={[
               { label: 'List', value: 'list' },
               { label: 'Tiles', value: 'tiles' },
