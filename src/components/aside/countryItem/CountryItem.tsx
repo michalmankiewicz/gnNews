@@ -13,14 +13,13 @@ function CountryItem({ name, imageUrl, symbol }: Props) {
     <NavLink
       to={`country/${symbol.toLowerCase()}`}
       className={({ isActive }) =>
-        `flex gap-2 items-center ${
-          isActive ? 'bg-primarShaded' : ''
-        }  rounded p-4 hover:bg-primarShaded`
+        `flex items-center gap-2 ${isActive ? 'bg-primary' : ''}  rounded-xl p-4 hover:bg-primary
+        `
       }
     >
       <img src={imageUrl} className="h-6 w-10" />
 
-      <h3 className="text-black text-lg">{name}</h3>
+      <h3 className="text-lg text-black">{name}</h3>
     </NavLink>
   );
 }

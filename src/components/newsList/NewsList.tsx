@@ -3,7 +3,7 @@ import { useDisclosure } from '@mantine/hooks';
 import React from 'react';
 import { Article } from '../../types/article';
 import { useAppSelector } from '../../types/redux';
-import NewsItem from './NewsItem';
+import NewsItem from './newsItem/NewsItem';
 
 type Props = {
   articles?: Article[];

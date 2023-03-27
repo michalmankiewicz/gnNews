@@ -59,7 +59,14 @@ const Header = () => {
           className={'md:hidden'}
         />
       </header>
-      <Modal size="lg" opened={modalOpened} onClose={modalHandlers.close} title="Popup" centered>
+      <Modal
+        size="lg"
+        opened={modalOpened}
+        onClose={modalHandlers.close}
+        title="Popup"
+        centered
+        radius="lg"
+      >
         Ut sed nisl a nunc semper eleifend in id ante. Nunc vitae libero hendrerit, sollicitudin
         neque vel, ultrices justo. Donec id lorem in nulla congue imperdiet. Nulla fringilla, leo
         vitae lobortis porttitor, ante justo dapibus massa, sodales commodo sapien urna sed magna.
