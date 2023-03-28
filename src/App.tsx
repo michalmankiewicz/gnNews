@@ -6,6 +6,7 @@ import Header from './components/header/Header';
 import Country from './pages/Country';
 import MainPage from './pages/MainPage';
 import NotFound from './pages/NotFound';
+import './i18n';
 
 function App() {
   return (

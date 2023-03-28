@@ -3,7 +3,7 @@ import { useDisclosure } from '@mantine/hooks';
 import React from 'react';
 import { useAppSelector } from '../../../types/redux';
 import NewsModal from '../newsModal/NewsModal';
-import noImage from '../../assets/no-image.png';
+import noImage from '../../../assets/no-image.png';
 
 type Props = {
   title: string;

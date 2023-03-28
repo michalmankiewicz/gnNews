@@ -36,7 +36,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           withGlobalStyles
           withNormalizeCSS
         >
-          <App />
+          <React.Suspense>
+            <App />
+          </React.Suspense>
         </MantineProvider>
       </BrowserRouter>
     </Provider>

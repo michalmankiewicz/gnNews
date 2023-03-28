@@ -1,6 +1,6 @@
 import { Badge } from '@mantine/core';
 import React from 'react';
-import noImage from '../../assets/no-image.png';
+import noImage from '../../../assets/no-image.png';
 
 type Props = {
   title: string;

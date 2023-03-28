@@ -18,12 +18,23 @@ import { Link } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
 import { useAppDispatch, useAppSelector } from '../../types/redux';
 import { toggleViewType } from '../../store/options/viewSlice';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const optionValue = useAppSelector((state) => state.view.viewType);
   const [modalOpened, modalHandlers] = useDisclosure(false);
   const [dropdownOpened, dropdownHandlers] = useDisclosure(false);
+
+  const { i18n, t } = useTranslation();
+
+  const toggleLanguage = () => {
+    console.log('sadsa');
+    if (i18n.language === 'en') i18n.changeLanguage('pl');
+    else if (i18n.language === 'pl') i18n.changeLanguage('en');
+  };
+
+  console.log(i18n.language);
 
   return (
     <>
@@ -44,13 +55,19 @@ const Header = () => {
             value={optionValue}
             onChange={() => dispatch(toggleViewType())}
             data={[
-              { label: 'List', value: 'list' },
-              { label: 'Tiles', value: 'tiles' },
+              { label: t('viewType.list'), value: 'list' },
+              { label: t('viewType.tiles'), value: 'tiles' },
             ]}
           />
           <Button size="lg" onClick={modalHandlers.open}>
-            Popup
+            {t('aboutMe')}
           </Button>
+          <div
+            onClick={toggleLanguage}
+            className="font-semi-bold flex h-14 w-14 items-center justify-center rounded-full border-8 border-primary bg-theme text-xl text-gray-600 hover:cursor-pointer hover:border-primarShaded"
+          >
+            {i18n.language.toUpperCase()}
+          </div>
         </div>
         <Burger
           opened={dropdownOpened}
