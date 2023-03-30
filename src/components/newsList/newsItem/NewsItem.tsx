@@ -1,44 +1,39 @@
-import { Badge, Modal } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import React from 'react';
+import { Badge } from '@mantine/core';
 import { useAppSelector } from '../../../types/redux';
-import NewsModal from '../newsModal/NewsModal';
 import noImage from '../../../assets/no-image.png';
+import { formatNewsDate } from '../../../utils/date';
 
 type Props = {
+  id: string;
   title: string;
   source: string;
   publishedAt: string;
   imageUrl: string;
-  newsUrl: string;
-  description: string;
+  openModal: (id: string) => void;
 };
 
-function NewsItem({ title, source, publishedAt, imageUrl, description, newsUrl }: Props) {
+function NewsItem({ title, source, publishedAt, imageUrl, openModal, id }: Props) {
   const viewType = useAppSelector((state) => state.view.viewType);
-
-  const [modalOpened, modalHandlers] = useDisclosure(false);
 
   return (
     <>
       <li
-        onClick={modalHandlers.open}
-        className={`flex rounded-xl border-4  border-primary bg-theme text-black transition-all hover:-translate-y-1    ${
-          viewType === 'list' ? '' : 'max-w-xs flex-col '
+        onClick={() => openModal(id)}
+        className={`relative flex rounded-xl border-4  border-primary bg-theme text-black transition-all hover:-translate-y-1    ${
+          viewType === 'list' ? '' : 'max-w-xs flex-col items-stretch '
         }  cursor-pointer gap-2   `}
       >
-        {/* TODO */}
         <div
-          className={`h-40 overflow-hidden rounded-xl bg-cover    ${
+          className={`${
             viewType === 'list' ? 'hidden  w-1/4 md:block' : 'h-52 w-full'
-          }  `}
+          } h-40 overflow-hidden rounded-xl bg-cover`}
           style={{ backgroundImage: `url(${imageUrl ?? noImage})` }}
         ></div>
 
         <div
           className={` ${
             viewType === 'list' ? 'md:w-3/4' : 'w-full '
-          }  flex  flex-col justify-between  p-4`}
+          }  flex  flex-col justify-between  p-4 pb-8`}
         >
           <div>
             <h2 className=" mb-2 text-2xl font-semibold ">{title}</h2>
@@ -47,26 +42,10 @@ function NewsItem({ title, source, publishedAt, imageUrl, description, newsUrl }
             </Badge>
           </div>
         </div>
-        <p className="self-end">{publishedAt}</p>
+        <p className="absolute bottom-2 right-2 font-semibold text-gray-400">
+          {formatNewsDate(publishedAt)}
+        </p>
       </li>
-
-      <Modal
-        withCloseButton={false}
-        onClose={modalHandlers.close}
-        opened={modalOpened}
-        centered
-        size="lg"
-        radius="lg"
-      >
-        <NewsModal
-          title={title}
-          source={source}
-          publishedAt={publishedAt}
-          imageUrl={imageUrl}
-          description={description}
-          newsUrl={newsUrl}
-        />
-      </Modal>
     </>
   );
 }

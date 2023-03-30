@@ -1,7 +1,7 @@
-import { configureStore, MiddlewareArray } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { countriesApi } from '../api/countriesApiSlice';
 import { newsApi } from '../api/newsApiSlice';
-import viewReducer from './options/viewSlice';
+import viewReducer from './view/viewSlice';
 
 const store = configureStore({
   reducer: {

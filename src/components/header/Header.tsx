@@ -1,40 +1,24 @@
-import React, { useState } from 'react';
-import {
-  createStyles,
-  Menu,
-  Center,
-  Header as HeaderComp,
-  Container,
-  Group,
-  Button,
-  Burger,
-  Flex,
-  Text,
-  SegmentedControl,
-  Modal,
-} from '@mantine/core';
+import { Button, Burger, SegmentedControl, Modal } from '@mantine/core';
 
 import { Link } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
 import { useAppDispatch, useAppSelector } from '../../types/redux';
-import { toggleViewType } from '../../store/options/viewSlice';
+import { toggleViewType } from '../../store/view/viewSlice';
 import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const dispatch = useAppDispatch();
+  const { i18n, t } = useTranslation();
+
   const optionValue = useAppSelector((state) => state.view.viewType);
+
   const [modalOpened, modalHandlers] = useDisclosure(false);
   const [dropdownOpened, dropdownHandlers] = useDisclosure(false);
 
-  const { i18n, t } = useTranslation();
-
   const toggleLanguage = () => {
-    console.log('sadsa');
     if (i18n.language === 'en') i18n.changeLanguage('pl');
     else if (i18n.language === 'pl') i18n.changeLanguage('en');
   };
-
-  console.log(i18n.language);
 
   return (
     <>
@@ -45,9 +29,9 @@ const Header = () => {
           </Link>
         </h1>
         <div
-          className={`absolute top-28 right-0 z-10 flex w-full flex-col items-center justify-center gap-4 bg-gray-500  py-4 md:static md:w-auto md:flex-row md:bg-transparent ${
+          className={`${
             dropdownOpened ? '' : 'hidden md:flex'
-          }`}
+          } absolute top-28 right-0 z-10 flex w-full flex-col items-center justify-center gap-4 bg-black py-4 md:static md:w-auto md:flex-row md:bg-transparent `}
         >
           <SegmentedControl
             color="primary"
@@ -80,15 +64,19 @@ const Header = () => {
         size="lg"
         opened={modalOpened}
         onClose={modalHandlers.close}
-        title="Popup"
+        title=" "
         centered
         radius="lg"
+        padding="lg"
       >
-        Ut sed nisl a nunc semper eleifend in id ante. Nunc vitae libero hendrerit, sollicitudin
-        neque vel, ultrices justo. Donec id lorem in nulla congue imperdiet. Nulla fringilla, leo
-        vitae lobortis porttitor, ante justo dapibus massa, sodales commodo sapien urna sed magna.
-        Nulla lobortis nec dolor ut faucibus. Vivamus arcu magna, sagittis id massa nec, venenatis
-        pellentesque lacus. In tincidunt dictum risus, ut scelerisque diam ultrices et.
+        <div className="mb-4">
+          <h3 className="mb-2 text-2xl font-bold">{t('popup.challenging.title')}</h3>
+          <p className="ml-1 text-xl">{t('popup.challenging.content')}</p>
+        </div>
+        <div>
+          <h3 className="mb-2 text-2xl font-bold">{t('popup.enjoyable.title')}</h3>
+          <p className="ml-1 text-xl">{t('popup.enjoyable.content')}</p>
+        </div>
       </Modal>
     </>
   );

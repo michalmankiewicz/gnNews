@@ -4,43 +4,30 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import { MantineProvider, createEmotionCache } from '@mantine/core';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { emotionCache } from './utils/emotionCache';
 import { Provider } from 'react-redux';
 import store from './store';
+import ErrorBoundary from './components/errorBoundary/errorBoundary';
+import { theme } from './utils/theme';
 
 const appendCache = createEmotionCache({ key: 'mantine', prepend: false });
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <MantineProvider
-          emotionCache={appendCache}
-          theme={{
-            colors: {
-              brand: [
-                '#DDDFC9',
-                '#D0D4AD',
-                '#C9CF8F',
-                '#C5CF70',
-                '#C8D54C',
-                '#D1E324',
-                '#D5EB04',
-                '#AFBF18',
-                '#919D25',
-                '#7A822C',
-              ],
-            },
-            primaryColor: 'brand',
-          }}
-          withGlobalStyles
-          withNormalizeCSS
-        >
-          <React.Suspense>
+  <ErrorBoundary>
+    <React.StrictMode>
+      <Provider store={store}>
+        <BrowserRouter>
+          <MantineProvider
+            emotionCache={appendCache}
+            theme={theme}
+            withGlobalStyles
+            withNormalizeCSS
+          >
             <App />
-          </React.Suspense>
-        </MantineProvider>
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
+          </MantineProvider>
+        </BrowserRouter>
+      </Provider>
+    </React.StrictMode>
+  </ErrorBoundary>
 );

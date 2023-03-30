@@ -1,24 +1,20 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { useGetCountriesByRegionQuery } from '../api/countriesApiSlice';
 import { useGetNewsQuery } from '../api/newsApiSlice';
 import NewsList from '../components/newsList/NewsList';
-import { setNumberOfNews } from '../store/options/viewSlice';
+import { setNumberOfNews } from '../store/view/viewSlice';
 import { useAppDispatch } from '../types/redux';
 
 function Country() {
-  const { countryId } = useParams();
-
-  console.log(countryId);
-
-  const { data, isSuccess, isLoading, isError } = useGetNewsQuery(countryId);
-
   const dispatch = useAppDispatch();
+
+  const { countryId } = useParams();
+  const { data, isSuccess, isLoading, isError } = useGetNewsQuery(countryId);
 
   useEffect(() => {
     if (!data) return;
     dispatch(setNumberOfNews(data?.articles?.length));
-  }, [data]);
+  }, [data, dispatch]);
 
   return (
     <NewsList

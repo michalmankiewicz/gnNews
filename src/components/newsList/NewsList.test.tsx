@@ -1,7 +1,7 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import NewsList from './NewsList';
-import { describe, test, vitest } from 'vitest';
+import { describe, test } from 'vitest';
 import TestWrapper from '../../utils/testUtils';
 
 beforeEach(() => {

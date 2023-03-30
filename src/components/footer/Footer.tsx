@@ -4,13 +4,14 @@ import { useAppSelector } from '../../types/redux';
 
 function Footer() {
   const { t } = useTranslation();
-  const numberOfNews = useAppSelector((state) => state.view.numberOfNews);
 
+  const numberOfNews = useAppSelector((state) => state.view.numberOfNews);
   const [date, setDate] = useState(new Date());
 
   const refreshClock = () => {
     setDate(new Date());
   };
+
   useEffect(() => {
     const timerId = setInterval(refreshClock, 1000);
     return function cleanup() {

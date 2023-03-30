@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import { useGetNewsQuery } from '../api/newsApiSlice';
 import NewsList from '../components/newsList/NewsList';
-import { setNumberOfNews } from '../store/options/viewSlice';
+import { setNumberOfNews } from '../store/view/viewSlice';
 import { useAppDispatch } from '../types/redux';
 
 function MainPage() {
-  const { data, isLoading, isError, isSuccess } = useGetNewsQuery(undefined);
   const dispatch = useAppDispatch();
+
+  const { data, isLoading, isError, isSuccess } = useGetNewsQuery(undefined);
 
   useEffect(() => {
     if (!data) return;
     dispatch(setNumberOfNews(data?.articles?.length));
-  }, [data]);
+  }, [data, dispatch]);
 
   return (
     <NewsList

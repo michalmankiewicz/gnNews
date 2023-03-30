@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGetCountriesByRegionQuery } from '../../api/countriesApiSlice';
 import CountryItem from './countryItem/CountryItem';
-import { Loader, Button } from '@mantine/core';
+import { Loader } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useTranslation } from 'react-i18next';
@@ -18,8 +18,8 @@ type Country = {
 
 function Aside() {
   const { t } = useTranslation();
-  const { data, isLoading, isError, isSuccess } = useGetCountriesByRegionQuery('europe');
 
+  const { data, isLoading, isError, isSuccess } = useGetCountriesByRegionQuery('europe');
   const [opened, { toggle }] = useDisclosure(false);
 
   return (
@@ -31,6 +31,7 @@ function Aside() {
       >
         <h2 className=" mb-4 text-2xl font-semibold">{t('countries')}</h2>
         {isLoading && <Loader />}
+
         {isSuccess && (
           <ul className="ml-0.5 flex flex-col gap-3">
             {data.map((c: Country) => (
@@ -43,10 +44,12 @@ function Aside() {
             ))}
           </ul>
         )}
+
+        {isError && <h3>Something went wrong!</h3>}
       </aside>
       <button
         onClick={toggle}
-        className="fixed -right-1 top-1/2 z-20   rounded border-4 border-white bg-primary px-1  py-6 md:hidden"
+        className="fixed -right-1 top-1/2 z-20   rounded  bg-primary px-1  py-6 md:hidden"
       >
         {opened ? <CaretRight size={40} weight="bold" /> : <CaretLeft weight="bold" size={40} />}
       </button>

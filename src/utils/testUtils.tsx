@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-
+import '../i18n';
 import { Provider } from 'react-redux';
 import store from '../store/index';
 import { createEmotionCache, MantineProvider } from '@mantine/core';
